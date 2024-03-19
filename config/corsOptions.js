@@ -1,3 +1,4 @@
+
 const allowedOrigins = require('./allowedOrigins');
 
 const corsOptions = {
@@ -8,7 +9,9 @@ const corsOptions = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
+   
+    
 }
 
 module.exports = corsOptions;

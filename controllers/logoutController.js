@@ -1,26 +1,31 @@
 const User = require('../model/User');
 
 const handleLogout = async (req, res) => {
-    // On client, also delete the accessToken
+    // On the client, also delete the accessToken
 
     const cookies = req.cookies;
-    if (!cookies?.jwt) return res.sendStatus(204); //No content
-    const refreshToken = cookies.jwt;
+    console.log(cookies.jwt)
 
-    // Is refreshToken in db?
-    const foundUser = await User.findOne({ refreshToken }).exec();
+    if (!cookies?.jwt) return res.sendStatus(204); // No content
+    const refreshToken = cookies.jwt;
+    console.log(refreshToken)
+
+    // Is refreshToken in the db?
+    const foundUser = await User.findOne({ 'refreshTokens.token': refreshToken }).exec();
+
     if (!foundUser) {
-        res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+        res.clearCookie('jwt', { httpOnly: false, sameSite: 'None', secure: true });
         return res.sendStatus(204);
     }
 
-    // Delete refreshToken in db
-    foundUser.refreshToken = foundUser.refreshToken.filter(rt => rt !== refreshToken);;
+    // Delete refreshToken in the db based on the token value
+    foundUser.refreshTokens = foundUser.refreshTokens.filter(rt => rt.token !== refreshToken);
+    
     const result = await foundUser.save();
     console.log(result);
 
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+    res.clearCookie('jwt', { httpOnly: false, sameSite: 'None', secure: true });
     res.sendStatus(204);
 }
 
-module.exports = { handleLogout }
+module.exports = { handleLogout };

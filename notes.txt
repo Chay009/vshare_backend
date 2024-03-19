@@ -1,0 +1,120 @@
+signout all devices
+block login
+token revocation
+limit logins 
+
+
+Token in Database:
+
+If the refresh token is found in the database, it means that the token is valid and associated with an active session.
+
+Token Not in Database:
+
+If the refresh token is not found in the database, several possibilities exist:
+The token may have expired.
+The token may have been revoked or blacklisted.
+The token may be part of an attack attempt, suggesting potential reuse.
+
+
+RefreshToken 
+
+if someone gets a refresh token he might use it to get new access token
+
+
+
+
+Token Rotation and Refresh:
+
+If you're using refresh tokens, 
+the login route is where a new refresh token is issued. 
+Implementing token rotation and refresh mechanisms ensures that even if an access token is leaked ,
+still tries to prevent malicious .
+
+
+we cannot invalidate jwt tokens as they are stateless 
+so we sotre in db and if they are valid then we check in db if in db valid else not valid
+
+
+
+when reset password or forgot logout all users 
+
+
+if a middleware needs arguments then first create a func take arg them return middleware 
+
+
+
+In Axios, interceptors are functions that can be registered globally or on a per-request basis.
+ Interceptors allow you to perform additional logic before a request is sent 
+ or after a response has been received.
+
+ // Example of registering a global request interceptor
+axios.interceptors.request.use(
+  (config) => {
+    // Do something before request is sent
+    return config;
+  },
+  (error) => {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+ // Example of registering a global response interceptor
+axios.interceptors.response.use(
+  (response) => {
+    // Do something with the response data
+    return response;
+  },
+  (error) => {
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
+
+
+we do token rotation when assigning new access tokens because
+
+suppose some gets our refresh token he can  use it to get a new access token only before 
+taht refresh token expires
+since we implemented token rotation on expiry of access token we get new refresh token and invalidates the old refresh token
+so pratically we reduced lif span of refresh token since  life span  of (access token<refresh token)
+because if not we request a new access token along with the refresh token which invalidates the older refresh token
+
+
+
+since we need access token in client side to access private routes we are storing it in local storage also 
+as its life span is less we can have some security but refresh token must be in  http onlycookie since it is used to 
+generate a new access token
+
+
+
+refresh token route is not so secure since we cant make authorization
+because someone whose access token are invalid are the ones that makes request to the server
+so we just check the refresh token and if it valid we assigning the access token and refresh tokens
+
+
+since refresh token has more life span than access token we need to store it in httpOnlycookie
+
+but access token we are storing in global state since local storage is not safe
+only draw back is states can be accessed by react dev tools
+
+
+
+webauthn
+
+for evrery generate option new challege will be created 
+
+
+
+
+JSON
+
+always client needs to send data in json format since objects has to be serialized into json format to convert in bytes
+
+and express json parses the object and makes it a object
+
+
+
+
+whenevr getting data that to be sent to client just dont fetch all data from db just use monggose to quesry neccesary
+
+use loadash to modify data according to our needs

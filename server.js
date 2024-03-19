@@ -11,7 +11,15 @@ const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
-const PORT = process.env.PORT || 3500;
+
+const PORT = process.env.PORT || 3500; 
+
+
+
+
+
+
+
 
 // Connect to MongoDB
 connectDB();
@@ -26,28 +34,51 @@ app.use(credentials);
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions));
 
-// built-in middleware to handle urlencoded form data
-app.use(express.urlencoded({ extended: false }));
-
 // built-in middleware for json 
 app.use(express.json());
+// built-in middleware to handle urlencoded form data
+
+app.use(express.urlencoded({ extended: true }));
+
+
 
 //middleware for cookies
 app.use(cookieParser());
 
+//session
+
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
+
+
+
 // routes
+
+
+app.use('/posts',require('./routes/getPost'))
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
+app.use('/username', require('./routes/username'));
+app.use('/forget-password', require('./routes/forgetpassword'));
 app.use('/auth', require('./routes/auth'));
+
+
+
+
+
 app.use('/refresh', require('./routes/refresh'));
+app.use('/webauth',require('./routes/api/webauthn'))
+
 app.use('/logout', require('./routes/logout'));
 
+
+app.use('/create-post', require('./routes/createPost'));
+app.use('/subscribe', require('./routes/subscribe'));
 app.use(verifyJWT);
 app.use('/employees', require('./routes/api/employees'));
 app.use('/users', require('./routes/api/users'));
+
 
 app.all('*', (req, res) => {
     res.status(404);
@@ -64,5 +95,12 @@ app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
+app.listen(PORT, () =>{
+     console.log(`Server running on port ${PORT}`)
+    
+   
+   
+
+    
 });

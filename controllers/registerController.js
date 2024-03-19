@@ -1,28 +1,64 @@
 const User = require('../model/User');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
+const { uniqueNamesGenerator,names,NumberDictionary} = require('unique-names-generator');
+const {accountVerification}=require('../utils/emailAccountVerification')
+const {sendMail}=require('../utils/sendMails')
 const handleNewUser = async (req, res) => {
-    const { user, pwd } = req.body;
-    if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
+
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ 'message': 'email and password are required.' });
 
     // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ username: user }).exec();
-    if (duplicate) return res.sendStatus(409); //Conflict 
+    const foundUser = await User.findOne({ email:email }).exec();
+    console.log(foundUser)
+    if (foundUser) return res.status(409).json({"message":"There is already an account registered with this mail, try login"}); //Conflict
+    if(foundUser&&foundUser.verified) return res.status(409).json({"message":"account already verified login now"}); 
 
     try {
         //encrypt the password
-        const hashedPwd = await bcrypt.hash(pwd, 10);
+        const hashedPwd = await bcrypt.hash(password, 10);
+        const numberDictionary = NumberDictionary.generate({ min: 100, max: 999 });
+        console.log(email.split('@')[0].slice(0,4))
 
-        //create and store the new user
-        const result = await User.create({
-            "username": user,
-            "password": hashedPwd
-        });
+        const configName = {
+            dictionaries: [[email.split('@')[0].slice(0,4)],names,numberDictionary],
+            length: 3,
+            separator: '',
+            style: 'capital'
+          };
+          const randomName = uniqueNamesGenerator(configName);
 
-        console.log(result);
+          console.log(randomName);
 
-        res.status(201).json({ 'success': `New user ${user} created!` });
+
+          // create jwt token with these credentials
+ 
+             // create jwt token with user credentials
+        const tokenPayload = {
+            email: email,
+            password: hashedPwd,
+            username: randomName
+        };
+        const jwtToken = jwt.sign(tokenPayload, process.env.VERIFICATION_TOKEN, { expiresIn: '5m' }); // Adjust expiration as needed
+
+
+
+
+     
+
+		const url = `${process.env.BASE_URL}/register/${Date.now()}/verify/${jwtToken}`;
+		await sendMail(email,accountVerification(url,randomName));
+
+       
+
+       return res.status(201).json({ 
+            'message': `Verification mail sent check now!`,
+            
+            
+                 });
     } catch (err) {
+        console.log(err.message);
         res.status(500).json({ 'message': err.message });
     }
 }
