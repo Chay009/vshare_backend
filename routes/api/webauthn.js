@@ -26,13 +26,22 @@ const { saveRefreshTokens } = require('../../utils/saveRefreshToken');
 
 
 // Readable title for your website
-const rpName = 'SimpleWebAuthn Example';
-// A unique identifier for your website
-const rpID = 'localhost';
-// The URL at which registrations and authentications should occur
-const origin = `http://${rpID}:3000`;
+// during dev
+// const rpName = 'SimpleWebAuthn Example';
+// // A unique identifier for your website
+// const rpID = 'localhost';
+// // The URL at which registrations and authentications should occur
+// const origin = `http://${rpID}:3000`;
 
+// Readable title for your website
+const rpName = process.env.RP_NAME;
+// A unique identifier for your website
+const rpID = process.env.RP_ID;
+// The URL at which registrations and authentications should occur
+const origin =process.env.ORIGIN;
 // Variables to store challenges associated with user IDs
+
+
 let registrationChallenges = {};
 let authenticationChallenges = {};
 
