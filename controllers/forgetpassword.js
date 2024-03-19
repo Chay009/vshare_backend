@@ -38,7 +38,7 @@ const min = 100000; // Minimum 6-digit number
 
 //                // create jwt token with user credentials
                const tokenPayload = {
-                OTP:six_digit_randomNumber,
+                OTP:six_digit_randomNumber.toString(),
                
             };
             const jwtToken = jwt.sign(tokenPayload, process.env.FORGET_PASSWORD_TOKEN, { expiresIn: '5m' }); // Adjust expiration as needed
