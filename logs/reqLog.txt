@@ -72,3 +72,7 @@
 20240320	00:39:48	ddf04fd8-8f10-42c1-8889-a101ba61f2a2	OPTIONS	https://v2share.vercel.app	/username
 20240320	00:40:31	1aa12c3e-a81c-4f13-af02-7258219bd59f	OPTIONS	https://v2share.vercel.app	/username
 20240320	00:40:31	d72eb309-aed6-40db-a54b-1457374f51cf	POST	https://v2share.vercel.app	/username
+20240320	02:29:39	01e1d944-f251-449c-be72-64a40195de2a	POST	undefined	/forget-password
+20240320	02:31:05	5b965214-36ac-4d33-95b2-751f3463ab1b	POST	undefined	/forget-password
+20240320	02:31:08	331f6a8b-0704-4645-af1b-5d9b9d91d12d	POST	undefined	/forget-password
+20240320	02:31:10	43b5620f-ea5d-48a2-b3e3-fbce7fd4640e	POST	undefined	/forget-password
