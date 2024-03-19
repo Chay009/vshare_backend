@@ -49,7 +49,7 @@ const min = 100000; // Minimum 6-digit number
          
     
             const url = `${process.env.BASE_URL}/forget-password/${foundUser._id}change/${jwtToken}`;
-            await sendMail(email,mailOTP(randomString.slice(0,6)));
+            await sendMail(email,mailOTP(six_digit_randomNumber));
 
         return res.json({token:jwtToken,email:email,id:foundUser._id});
 
