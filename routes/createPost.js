@@ -115,6 +115,7 @@ router.post('/',upload.any('coverImage','photos'),async (req, res) => {
         res.json({
             success: true,
             message: 'Data received and processed successfully',
+            newpost:savedPost
             // post: savedPost
         });
 

@@ -37,6 +37,7 @@ const { saveRefreshTokens } = require('../../utils/saveRefreshToken');
 const rpName = process.env.RP_NAME;
 // A unique identifier for your website
 const rpID = process.env.RP_ID;
+console.log(rpID)
 // The URL at which registrations and authentications should occur
 const origin =process.env.ORIGIN;
 // Variables to store challenges associated with user IDs
@@ -49,6 +50,7 @@ let authenticationChallenges = {};
 
 router.get('/generate-registration-options/:userID', async (req, res) => {
   const { userID } = req.params;
+  console.log(rpID)
 
   try {
     const user = await User.findOne({ _id: userID });
@@ -140,6 +142,8 @@ router.post('/verify-registration/:userID', async (req, res) => {
         };
 
         user.webAuthnCredentials.push(newDeviceCredential);
+
+        // since webauthncredentials filled mongoose model pre saving sets iswebauthnregistered to true
 
         // check that there is already sub with this device
 
