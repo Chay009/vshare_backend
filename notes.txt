@@ -118,3 +118,19 @@ and express json parses the object and makes it a object
 whenevr getting data that to be sent to client just dont fetch all data from db just use monggose to quesry neccesary
 
 use loadash to modify data according to our needs
+
+
+
+https://stackoverflow.com/questions/75315681/webpush-sendnotification-node-js-giving-401-header-must-be-specified-error-on
+
+
+
+
+
+
+always update your node version to the latest version to support different packages
+
+
+install nvm as global to update node
+
+i found that webcryto not working in render which 

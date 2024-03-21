@@ -64,7 +64,7 @@ router.get('/generate-registration-options/:userID', async (req, res) => {
       rpName,
       rpID,
       userID: user._id,
-      userName: user.email,
+      userName: user.username,
       attestationType: 'none',
       excludeCredentials: user.webAuthnCredentials?.map((authenticator) => ({
         id: authenticator.credentialID,

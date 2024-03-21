@@ -18,16 +18,17 @@ const notifyWebAuthnUser=async(foundUser,loginDeviceInfo)=>{
         subscriptionDetails.webAuthnPushSubscriptions.map(async(webAuthnPushSubscription)=>{
             
             console.log("the webauthn user subs",webAuthnPushSubscription.subscription)
-            const parsedUrl = new URL(webAuthnPushSubscription.subscription);
+            console.log(webAuthnPushSubscription.subscription.endpoint)
+            const parsedUrl = new URL(webAuthnPushSubscription.subscription.endpoint);
            
-            const audience = parsedUrl.protocol + '//' +
-              parsedUrl.hostname;
+            const audience = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+            console.log(audience)
 
             const vapidHeaders = webpush.getVapidHeaders(
                 audience,
-                // 'mailto: example@web-push-node.org',
-                vapidDetails.publicKey,
-                vapidDetails.privateKey,
+                'mailto: example@web-push-node.org',
+                process.env.PUSH_PUBLIC_KEY,
+                process.env.PUSH_PRIVATE_KEY,
                 'aes128gcm'
               );
 

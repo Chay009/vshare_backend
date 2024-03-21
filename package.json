@@ -13,6 +13,7 @@
     "node": "14.x"
   },
   "dependencies": {
+    "@peculiar/webcrypto": "^1.4.5",
     "@simplewebauthn/server": "^8.3.6",
     "axios": "^1.6.7",
     "bcrypt": "^5.0.1",

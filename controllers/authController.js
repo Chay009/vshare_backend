@@ -70,12 +70,12 @@ const handleLogin = async (req, res) => {
     
    
     //  fixing this one error with headers also adjsut after how many  refresh tokens need to be present to send mail
-    // await notifyWebAuthnUser(foundUser,loginDeviceInfo)
+    await notifyWebAuthnUser(foundUser,loginDeviceInfo)
 // fisrt time token allocated means new user 
 
 // not sending him for his login
 
-    await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation))
+    // await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation))
 
   
     res.cookie('jwt', newRefreshToken, {httpOnly: false, secure: true,  sameSite: 'None', maxAge: 24 * 60 * 60 * 1000});

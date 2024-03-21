@@ -18,14 +18,19 @@ const PORT = process.env.PORT || 3500;
 
 
 
+const { Crypto } = require("@peculiar/webcrypto");
 
+const crypto = new Crypto();
+//  working in my laptop but problem while deploying
+// the simplewebauthn server uses webcrypto but may be it is not supporting so this is a polyfill which mimics the behaviour of webcrypto
 
 
 // Connect to MongoDB
 connectDB();
 
 // custom middleware logger
-app.use(logger);
+// enable it during development 
+// app.use(logger);
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
