@@ -10,17 +10,19 @@ const { createTokens } = require('../utils/createTokens');
 const { saveRefreshTokens } = require('../utils/saveRefreshToken');
 const { handleTokenRotation } = require('../utils/handleTokenRotation');
 const Subscription = require('../model/Subscription');
-const { sendPushNotification } = require('../utils/sendPushNotifications');
+
 const { notifyWebAuthnUser } = require('../utils/notifyWebAuthnUser');
 const { sendMail}=require('../utils/sendMails');
-const{IPtolocation}=require('../services/iplocation');
+const{getClientLocation}=require('../services/iplocation');
 const { NewLogin } = require('../utils/emailNewLogin');
+
+
 const handleLogin = async (req, res) => {
     try{
     
     
     const cookies = req.cookies;
-    const clientIP=req.ip
+  
     
 
 
@@ -59,9 +61,11 @@ const handleLogin = async (req, res) => {
     const{accessToken,newRefreshToken,roles}=createTokens(foundUser);
        
     const modifiedUserRefreshTokenArray = await handleTokenRotation(cookies,res,foundUser);
-
-    const clientLocation=await IPtolocation(clientIP);
-    console.log(clientLocation,"location")
+ 
+    // get location of client based on req ip
+    const clientLocation=await getClientLocation();
+    
+   
 
     // Saving refreshToken with current user || if multiple logins saving all refresh tokens
    await saveRefreshTokens(foundUser,modifiedUserRefreshTokenArray,newRefreshToken,loginDeviceInfo,clientLocation);

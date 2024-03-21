@@ -18,11 +18,12 @@ const PORT = process.env.PORT || 3500;
 
 
 
-const { Crypto } = require("@peculiar/webcrypto");
+// const { Crypto } = require("@peculiar/webcrypto");
 
-const crypto = new Crypto();
+// const crypto = new Crypto();
 //  working in my laptop but problem while deploying
 // the simplewebauthn server uses webcrypto but may be it is not supporting so this is a polyfill which mimics the behaviour of webcrypto
+// if this is not effecting webauthn then remove this package and work on sendmail newlogin and notifiction logic
 
 
 // Connect to MongoDB

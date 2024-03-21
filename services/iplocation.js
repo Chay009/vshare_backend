@@ -1,15 +1,19 @@
-const axios=require('axios')    
+const ipapi = require("ipapi.co");
 
-const IPtolocation= async(ip)=>{
-    try {
-        const response = await axios.get(  `https://ipapi.co/${ip}/json`);
-        return response.data; // Assuming API returns JSON data
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; // Handle the error as needed
-    }
+
+
+ 
+
+const getClientLocation= async()=>{
+
+    return new Promise((resolve, reject) => {
+        ipapi.location(loc => {
+          resolve(loc);
+        });
+      });
+   
 
 
 }
 
-module.exports ={IPtolocation}
+module.exports ={getClientLocation}

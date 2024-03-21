@@ -16,6 +16,8 @@ const Subscription = require('../../model/Subscription');
 const { createTokens } = require('../../utils/createTokens');
 const { handleTokenRotation } = require('../../utils/handleTokenRotation');
 const { saveRefreshTokens } = require('../../utils/saveRefreshToken');
+const { notifyWebAuthnUser } = require('../../utils/notifyWebAuthnUser');
+const { getClientLocation } = require('../../services/iplocation');
 
 
 
@@ -289,15 +291,26 @@ console.log(loginDeviceInfo);
        
       const modifiedUserRefreshTokenArray = await handleTokenRotation(cookies,res,foundUser);
   
-    
+      // get location of client based on req ip
+      const clientLocation=await getClientLocation();
   
       // Saving refreshToken with current user || if multiple logins saving all refresh tokens
-     await saveRefreshTokens(foundUser,modifiedUserRefreshTokenArray,newRefreshToken,loginDeviceInfo);
+     await saveRefreshTokens(foundUser,modifiedUserRefreshTokenArray,newRefreshToken,loginDeviceInfo,clientLocation);
   
       console.log("token: " + newRefreshToken)
          // Creates Secure Cookie with refresh token since we are assigning a new token we must be careful hence implemented token rotatiion
+
+
+             //  fixing this one error with headers also adjsut after how many  refresh tokens need to be present to send mail
+    await notifyWebAuthnUser(foundUser,loginDeviceInfo)
+    // fisrt time token allocated means new user 
+
+// not sending him for his login
+
+    // await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation))
+
 res.cookie('jwt',newRefreshToken,{httpOnly:false,secure:true,sameSite:"none",maxAge:24 * 60 * 60 * 1000 });
-    // res.cookie('jwt', newRefreshToken, { httpOnly: false, secure:true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 ,path:'/'});
+
 
 
              
