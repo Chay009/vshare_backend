@@ -312,7 +312,7 @@ console.log(loginDeviceInfo);
 if(foundUser.refreshTokens.length >0)
 {
 
-    await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation),{from:"Vshare Security Team",subject:"Security Alert: New Login to Your Account"})
+    await sendMail(foundUser.email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation),{from:"Vshare Security Team",subject:"Security Alert: New Login to Your Account"})
 }
 
 
