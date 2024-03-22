@@ -27,6 +27,8 @@ const accountVerification=(url,username)=>{
             <p style="font-size: 16px; line-height: 26px; margin: 16px 0; font-family: 'Open Sans', 'Helvetica Neue', Arial; font-weight: 300; color: #404040;">Keep your account secure by not sharing this email with anyone. For more information, visit our <a  style="color: #067df7; text-decoration: underline;" target="_blank">Help Center</a>.</p>
             <p style="font-size: 16px; line-height: 26px; margin: 16px 0; font-family: 'Open Sans', 'Helvetica Neue', Arial; font-weight: 300; color: #404040;">Thanks for registering Vshare!,Let's Strengthen our bonds</p>
         </div>
+        <a href="https://twitter.com/chay2u"><img alt="Twitter" src="https://abs.twimg.com/responsive-web/client-web/icon-default.522d363a.png" style="max-width: 32px;"></a>
+        <a href="https://www.linkedin.com/in/chay2u/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="LinkedIn" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-linkedin.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
     </div>
 </body>
 

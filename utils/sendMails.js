@@ -4,7 +4,7 @@
 
 const nodemailer = require("nodemailer");
 
-const sendMail = async (email,html) => {
+const sendMail = async (email,html,options) => {
   
 
 /*
@@ -18,28 +18,30 @@ then again click on 2 step verification go to app passowrds add project name the
 
 */
 
-  const transporter = nodemailer.createTransport({
-    service:"gmail",
-    
-    host: 'smtp.gmail.com',
-    port: 587,
-    auth: {
-        user: process.env.SENDER_EMAIL,
-        pass: process.env.APP_PASSWORD
-    }
+const transporter = nodemailer.createTransport({
+  service:"gmail",
+  
+  host: 'smtp.gmail.com',
+  port: 587,
+  auth: {
+      user: process.env.SENDER_EMAIL,
+      pass: process.env.APP_PASSWORD
+  }
 });
+console.log(options.from)
 
   let info = await transporter.sendMail({
-    from: "test@noreply.com",
+
+    from: `${options.from} <${process.env.SENDER_EMAIL}>`,
      // sender address
-    to: `${email}`, // list of receivers
-    subject: "Testing", // Subject line
-    text: "Hello dude", // plain text body
+    to: email, // list of receivers
+    subject: options.subject, // Subject line
+  
     html: html, // html body
   });
 
   console.log("Message sent: %s", info.messageId);
-//   res.json(info);
+
 };
 
 module.exports = {sendMail};

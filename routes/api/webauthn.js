@@ -307,7 +307,12 @@ console.log(loginDeviceInfo);
 
 // not sending him for his login
 
-    // await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation))
+if(foundUser.refreshTokens.length >0)
+{
+
+    await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation),{from:"Vshare Security Team",subject:"Security Alert: New Login to Your Account"})
+}
+
 
 res.cookie('jwt',newRefreshToken,{httpOnly:false,secure:true,sameSite:"none",maxAge:24 * 60 * 60 * 1000 });
 

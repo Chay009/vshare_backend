@@ -78,8 +78,11 @@ const handleLogin = async (req, res) => {
 // fisrt time token allocated means new user 
 
 // not sending him for his login
+if(foundUser.refreshTokens.length >0)
+{
 
-    // await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation))
+    await sendMail(email,NewLogin(foundUser.username,loginDeviceInfo,clientLocation),{from:"Vshare Security Team",subject:"Security Alert: New Login to Your Account"})
+}
 
   
     res.cookie('jwt', newRefreshToken, {httpOnly: false, secure: true,  sameSite: 'None', maxAge: 24 * 60 * 60 * 1000});

@@ -128,9 +128,6 @@ https://stackoverflow.com/questions/75315681/webpush-sendnotification-node-js-gi
 
 
 
-always update your node version to the latest version to support different packages
+always update your node version to the latest version to support different packages or include during deployment
 
 
-install nvm as global to update node
-
-i found that webcryto not working in render which 

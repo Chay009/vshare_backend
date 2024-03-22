@@ -34,8 +34,8 @@ const NewLogin = (username, deviceInfo, clientLocation) => {
                         <p style="font-size: 16px; line-height: 24px; margin: 20px 0;">If this wasn't you or if you have additional questions, feel free to contact us.</p>
                     </div>
                     <div style="text-align: center;">
-                        <a href="/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="Twitter" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-twitter.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
-                        <a href="/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="LinkedIn" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-linkedin.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
+                    <a href="https://twitter.com/chay2u"><img alt="Twitter" src="https://abs.twimg.com/responsive-web/client-web/icon-default.522d363a.png" style="max-width: 32px;"></a>
+                        <a href="https://www.linkedin.com/in/chay2u/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="LinkedIn" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-linkedin.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 20px; padding-bottom: 8px;">

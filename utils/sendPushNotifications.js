@@ -10,7 +10,7 @@ dayjs.extend(relativeTime)
 const sendPushNotification = async (subscription, message,vapidHeaders) => {
     try {
         
-        message.body += ` . ${dayjs(new Date()).fromNow(true)}`;
+        message.body += ` . ${dayjs(new Date())}`;
 
       
         console.log(`${subscription} received notification sending..`);

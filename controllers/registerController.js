@@ -48,7 +48,7 @@ const handleNewUser = async (req, res) => {
      
 
 		const url = `${process.env.BASE_URL}/register/${Date.now()}/verify/${jwtToken}`;
-		await sendMail(email,accountVerification(url,randomName));
+		await sendMail(email,accountVerification(url,randomName),{from:"Vshare Team",subject:"Please confirm your Vshare account"});
 
        
 

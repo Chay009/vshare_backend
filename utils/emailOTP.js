@@ -25,9 +25,9 @@ const mailOTP=(code)=>{
                 <p style="font-size: 14px; line-height: 24px; margin: 16px 0; color: #000;">If you didn't request this email, there's nothing to worry about, you can safely ignore it.</p>
             </div>
             <div style="text-align: center;">
-                <a href="/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="Slack" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-twitter.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
+            <a href="https://twitter.com/chay2u"><img alt="Twitter" src="https://abs.twimg.com/responsive-web/client-web/icon-default.522d363a.png" style="max-width: 32px;"></a>
                
-                <a href="/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="Slack" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-linkedin.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
+                <a href="https://www.linkedin.com/in/chay2u/" style="color: #067df7; text-decoration: none; margin-left: 10px;" target="_blank"><img alt="Slack" height="32" src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/slack-linkedin.png" style="display: inline; outline: none; border: none; text-decoration: none;" width="32"></a>
             </div>
         </div>
     </body>
