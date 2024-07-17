@@ -10,7 +10,7 @@
   "author": "Chay",
   "license": "ISC",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "dependencies": {
     "@peculiar/webcrypto": "^1.4.5",
