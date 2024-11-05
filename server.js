@@ -35,6 +35,7 @@ connectDB();
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
+app.use(require('express-status-monitor')());
 app.use(credentials);
 
 // Cross Origin Resource Sharing
